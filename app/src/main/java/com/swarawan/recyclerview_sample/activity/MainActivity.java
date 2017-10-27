@@ -12,11 +12,16 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
 
         findViewById(R.id.vertical).setOnClickListener(onVerticalClicked);
         findViewById(R.id.horizontal).setOnClickListener(onHorizontalClicked);
         findViewById(R.id.multi).setOnClickListener(onMultiClicked);
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        setContentView(R.layout.activity_main);
     }
 
     private View.OnClickListener onVerticalClicked = new View.OnClickListener() {

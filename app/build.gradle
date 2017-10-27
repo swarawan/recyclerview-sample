@@ -24,6 +24,16 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
+
+    applicationVariants.all { variant ->
+        variant.outputs.all { output ->
+            def appName = "RecyclerSample"
+            def buildType = variant.buildType.name
+            def versionName = variant.versionName
+
+            outputFileName = appName + "-" + buildType + "-" + versionName + ".apk"
+        }
+    }
 }
 
 private Integer generateVersionCode() {
