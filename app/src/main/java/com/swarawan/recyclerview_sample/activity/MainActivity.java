@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Toast;
 
 import com.swarawan.recyclerview_sample.R;
 
@@ -16,6 +17,8 @@ public class MainActivity extends AppCompatActivity {
         findViewById(R.id.vertical).setOnClickListener(onVerticalClicked);
         findViewById(R.id.horizontal).setOnClickListener(onHorizontalClicked);
         findViewById(R.id.multi).setOnClickListener(onMultiClicked);
+
+        Toast.makeText(this, "Branch profile", Toast.LENGTH_SHORT).show();
     }
 
     @Override
