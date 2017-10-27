@@ -5,9 +5,12 @@ import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
+import android.view.View;
 
 import com.swarawan.recyclerview_sample.R;
 import com.swarawan.recyclerview_sample.adapter.StudentAdapter;
+import com.swarawan.recyclerview_sample.adapter.StudentMultiAdapter;
 import com.swarawan.recyclerview_sample.model.Student;
 
 import java.util.ArrayList;
@@ -27,11 +30,14 @@ public class VerticalListActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_recycler);
 
+        // setting up data
         students = new ArrayList<>();
         studentAdapter = new StudentAdapter(this, students);
 
-        ((RecyclerView) findViewById(R.id.list)).setAdapter(studentAdapter);
-        ((RecyclerView) findViewById(R.id.list)).setLayoutManager(new LinearLayoutManager(this));
+        // setting up recycler view
+        RecyclerView list = findViewById(R.id.list);
+        list.setAdapter(studentAdapter);
+        list.setLayoutManager(new LinearLayoutManager(this));
 
         loadData();
     }

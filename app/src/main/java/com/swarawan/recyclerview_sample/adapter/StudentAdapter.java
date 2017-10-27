@@ -5,7 +5,6 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.swarawan.recyclerview_sample.R;
@@ -29,17 +28,21 @@ public class StudentAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
         this.inflater = LayoutInflater.from(context);
     }
 
+
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view = inflater.inflate(R.layout.item_simple, parent, false);
-        return new ViewHolder(view);
+        return new StudentViewHolder(view);
     }
 
     @Override
     public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
-        Student model = students.get(position);
-        ViewHolder viewHolder = (ViewHolder) holder;
-        viewHolder.populate(model);
+        StudentViewHolder viewHolder = (StudentViewHolder) holder;
+        Student student = students.get(position);
+
+        // add data to view
+        viewHolder.name.setText(student.name);
+        viewHolder.email.setText(student.email);
     }
 
     @Override
@@ -47,21 +50,18 @@ public class StudentAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
         return students.size();
     }
 
-    class ViewHolder extends RecyclerView.ViewHolder {
+    /**
+     * Inner class : StudentViewHolder
+     */
+    class StudentViewHolder extends RecyclerView.ViewHolder {
 
-        TextView name;
-        TextView email;
+        TextView name, email;
 
-        public ViewHolder(View itemView) {
+        public StudentViewHolder(View itemView) {
             super(itemView);
 
             name = itemView.findViewById(R.id.student_name);
             email = itemView.findViewById(R.id.student_email);
-        }
-
-        void populate(Student student) {
-            name.setText(student.name);
-            email.setText(student.email);
         }
     }
 }

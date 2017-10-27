@@ -21,18 +21,15 @@ public class Student {
         this.email = email;
     }
 
+    /**
+     * Dummy data
+     *
+     */
     public static List<Student> getAll() {
         List<Student> students = new ArrayList<>();
         students.add(new Student(1, "Rio Swarawan", "swarawan.rio@gmail.com"));
-        students.add(new Student(2, "Rio Swarawan", "swarawan.rio@gmail.com"));
-        students.add(new Student(3, "Rio Swarawan", "swarawan.rio@gmail.com"));
-        students.add(new Student(4, "Rio Swarawan", "swarawan.rio@gmail.com"));
-        students.add(new Student(5, "Rio Swarawan", "swarawan.rio@gmail.com"));
-        students.add(new Student(6, "Rio Swarawan", "swarawan.rio@gmail.com"));
-        students.add(new Student(7, "Rio Swarawan", "swarawan.rio@gmail.com"));
-        students.add(new Student(8, "Rio Swarawan", "swarawan.rio@gmail.com"));
-        students.add(new Student(9, "Rio Swarawan", "swarawan.rio@gmail.com"));
-        students.add(new Student(10, "Rio Swarawan", "swarawan.rio@gmail.com"));
+        students.add(new Student(2, "Dian Ma'ruf", "dianmaruf1997@gmail.com"));
+        students.add(new Student(3, "Qisthia Kattania", "kattania.q@gmail.com"));
 
         return students;
     }

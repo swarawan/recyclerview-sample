@@ -1,14 +1,21 @@
 apply plugin: 'com.android.application'
 
+ext.versionMajor = 1
+ext.versionMinor = 2
+ext.versionPatch = 3
+ext.versionClassifier = null
+ext.isSnapshot = true
+ext.minimumSdkVersion = 15
+
 android {
     compileSdkVersion 26
     buildToolsVersion "26.0.2"
     defaultConfig {
         applicationId "com.swarawan.recyclerview_sample"
         minSdkVersion 15
-        targetSdkVersion 26
-        versionCode 1
-        versionName "1.0"
+        targetSdkVersion project.ext.minimumSdkVersion
+        versionCode generateVersionCode()
+        versionName generateVersionName()
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
     buildTypes {
@@ -17,6 +24,28 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
+}
+
+private Integer generateVersionCode() {
+    return ext.minimumSdkVersion * 10000000 +
+            ext.versionMajor * 1000000 +
+            ext.versionMinor * 100000 +
+            ext.versionPatch * 10000
+}
+
+private String generateVersionName() {
+    String versionName = "${ext.versionMajor}.${ext.versionMinor}.${ext.versionPatch}"
+    if(ext.versionClassifier == null) {
+        if(ext.isSnapshot) {
+            ext.versionClassifier = "SNAPSHOT"
+        }
+    }
+
+    if(ext.versionClassifier != null) {
+        versionName += "-" + ext.versionClassifier
+    }
+
+    return versionName
 }
 
 dependencies {
