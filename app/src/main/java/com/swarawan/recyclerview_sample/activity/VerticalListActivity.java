@@ -7,10 +7,12 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.View;
+import android.widget.Toast;
 
 import com.swarawan.recyclerview_sample.R;
 import com.swarawan.recyclerview_sample.adapter.StudentAdapter;
 import com.swarawan.recyclerview_sample.adapter.StudentMultiAdapter;
+import com.swarawan.recyclerview_sample.callback.RecyclerViewCallback;
 import com.swarawan.recyclerview_sample.model.Student;
 
 import java.util.ArrayList;
@@ -32,7 +34,7 @@ public class VerticalListActivity extends AppCompatActivity {
 
         // setting up data
         students = new ArrayList<>();
-        studentAdapter = new StudentAdapter(this, students);
+        studentAdapter = new StudentAdapter(this, students, onListItemClicked);
 
         // setting up recycler view
         RecyclerView list = findViewById(R.id.list);
@@ -46,4 +48,12 @@ public class VerticalListActivity extends AppCompatActivity {
         students.addAll(Student.getAll());
         studentAdapter.notifyDataSetChanged();
     }
+
+    private RecyclerViewCallback onListItemClicked = new RecyclerViewCallback() {
+        @Override
+        public void onSelectedItem(int position) {
+            Student student = students.get(position);
+            Toast.makeText(VerticalListActivity.this, student.name + " Selected with Id " + student.id, Toast.LENGTH_SHORT).show();
+        }
+    };
 }
