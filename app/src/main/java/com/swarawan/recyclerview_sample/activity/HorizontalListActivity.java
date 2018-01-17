@@ -5,9 +5,11 @@ import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.widget.Toast;
 
 import com.swarawan.recyclerview_sample.R;
 import com.swarawan.recyclerview_sample.adapter.StudentAdapter;
+import com.swarawan.recyclerview_sample.callback.RecyclerViewCallback;
 import com.swarawan.recyclerview_sample.model.Student;
 
 import java.util.ArrayList;
@@ -28,7 +30,7 @@ public class HorizontalListActivity extends AppCompatActivity {
         setContentView(R.layout.activity_recycler);
 
         students = new ArrayList<>();
-        studentAdapter = new StudentAdapter(this, students);
+        studentAdapter = new StudentAdapter(this, students, callback);
 
         ((RecyclerView) findViewById(R.id.list)).setAdapter(studentAdapter);
         ((RecyclerView) findViewById(R.id.list)).setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false));
@@ -40,4 +42,12 @@ public class HorizontalListActivity extends AppCompatActivity {
         students.addAll(Student.getAll());
         studentAdapter.notifyDataSetChanged();
     }
+
+    private RecyclerViewCallback callback = new RecyclerViewCallback() {
+        @Override
+        public void onSelectedItem(int position) {
+            Student student = students.get(position);
+            Toast.makeText(HorizontalListActivity.this, "Selected: " + student, Toast.LENGTH_SHORT).show();
+        }
+    };
 }
